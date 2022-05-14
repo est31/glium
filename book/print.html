@@ -1299,7 +1299,7 @@ do it.</p>
 <p>Then we calculate <code>camera_dir</code>, which is the direction of the camera relative to the object.
 Since the camera is always at <code>(0, 0, 0)</code>, this is calculated simply by taking the opposite
 of the position of the vector.</p>
-<p><img src="resources/resources/tuto-13-specular.png" alt="A schema of what's happening" /></p>
+<p><img src="resources/tuto-13-specular.png" alt="A schema of what's happening" /></p>
 <p>Afterwards we calculate <code>half_direction</code>, which is the direction of the camera relative to
 the light if the camera and the light were both one unit away from the object. We then
 calculate the cosine of the angle between <code>half_direction</code> and <code>v_normal</code> with
@@ -1472,7 +1472,7 @@ calculates it:</p>
 </code></pre>
 <p>Thanks to this we can calculate the <em>real</em> normal, in other words the normal of the surface
 at the given pixel:</p>
-<pre><code class="language-glsl">mat3 tbn = cotangent_frame(v_normal, v_position, v_tex_coords);
+<pre><code class="language-glsl">mat3 tbn = cotangent_frame(v_normal, -v_position, v_tex_coords);
 vec3 real_normal = normalize(tbn * -(normal_map * 2.0 - 1.0));
 </code></pre>
 <p>The rest of the code is the same as before. We apply phong shading, except that we use
